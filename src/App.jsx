@@ -23,47 +23,50 @@ function App() {
     // setCAmount(amount)
   }
   return (
-    <>
-     <div className="text-red-600 bg-amber-300">HELLO  hello </div>
-     <form className='bg-amber-200' >
-      <Nbox
-      label="From"
-      amount={amount}
-      onAmountChange={(amount) => setAmount(amount)    }  
-      onCurrencyChange={(x)=> setFrom(x)}
-      currencyOptions={options}
-      selectCurrency={from}
+    <main className="page-shell">
+      <header className="topbar">
+        <span className="brand">Currency Converter</span>
+      </header>
 
-      />
+      <section className="converter-layout">
+        <form className="converter-panel" onSubmit={(event) => event.preventDefault()}>
+          <div className="panel-heading">
+            <h1>Convert currency</h1>
+          </div>
 
-      <Nbox
-      label='To'
-      amount={camount}
-      onAmountChange={(amount)=>setCAmount(amount)}
-      onCurrencyChange={(currency)=>setTo(currency)}
-      selectCurrency={to}
-      currencyOptions={options}
-      //disabled={true}
+          <div className="currency-fields">
+            <Nbox
+              label="From"
+              amount={amount}
+              onAmountChange={(value) => setAmount(value)}
+              onCurrencyChange={(currency) => setFrom(currency)}
+              currencyOptions={options}
+              selectCurrency={from}
+            />
 
-      />
+            <div className="swap-row">
+              <span className="field-divider" />
+              <button className="swap-button" type="button" onClick={swap} aria-label="Swap currencies" title="Swap currencies">
+                ↕
+              </button>
+            </div>
 
-      <button
-        type="button"
-        onClick={convert}
-        className="bg-blue-500 text-white px-4 py-2 mt-4 rounded"
-      >
-        Convert {from.toUpperCase()} to {to.toUpperCase()}
-      </button> 
-      <br />
-      <button
-        type="button"
-        onClick={swap}
-        className="bg-blue-500 text-white px-4 py-2 mt-4 rounded"
-      >
-        Swap
-      </button>
-     </form>
-    </>
+            <Nbox
+              label="To"
+              amount={camount}
+              onAmountChange={(value) => setCAmount(value)}
+              onCurrencyChange={(currency) => setTo(currency)}
+              selectCurrency={to}
+              currencyOptions={options}
+            />
+          </div>
+
+          <button className="convert-button" type="button" onClick={convert}>
+            Convert
+          </button>
+        </form>
+      </section>
+    </main>
   )
 }
 

@@ -17,27 +17,27 @@ function Nbox({
 
     const amountInputId = useId()
   return (
-    <div className='text-black'>
-      
-      <label htmlFor={amountInputId}>{label}</label> 
-      <br />
-      <input  id={amountInputId} type="number" placeholder='Amount' value={amount} 
-      onChange={(e)=>onAmountChange && onAmountChange(Number(e.target.value))}
+    <div className="currency-field">
+      <label htmlFor={amountInputId}>{label}</label>
+      <div className="currency-input-row">
+        <input
+          id={amountInputId}
+          type="number"
+          placeholder="0.00"
+          value={amount}
+          onChange={(e) => onAmountChange && onAmountChange(Number(e.target.value))}
       //disabled={disabled}
-      />
-
-      <br />
-
-      <select 
-       className="p-2 border rounded bg-white"
-      value={selectCurrency}
-       onChange={(e) => onCurrencyChange && onCurrencyChange(e.target.value)}
-      >
-        {currencyOptions.map((currency)=>(
-          <option value={currency} key={currency}>{currency}</option>
-        ))}
-      </select>
-    
+        />
+        <select
+          value={selectCurrency}
+          onChange={(e) => onCurrencyChange && onCurrencyChange(e.target.value)}
+          aria-label={`${label} currency`}
+        >
+          {currencyOptions.map((currency) => (
+            <option value={currency} key={currency}>{currency.toUpperCase()}</option>
+          ))}
+        </select>
+      </div>
 
     </div>
   )
